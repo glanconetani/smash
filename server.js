@@ -1,6 +1,7 @@
 
 var path = require("path");
 var express = require("express");
+var db = require('./db')
 
 const PORT = process.env.HTTP_PORT || 4001;
 const app = express();
