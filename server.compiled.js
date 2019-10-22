@@ -6,8 +6,7 @@ var express = require("express");
 
 var PORT = process.env.HTTP_PORT || 4001;
 var app = express();
-app.use(express["static"]("public")); //app.use(express.static(path.join(__dirname, 'client', 'build')));
-
+app.use(express["static"](path.join(__dirname, 'client', 'build')));
 app.get('/', function (req, res) {
   res.send('just gonna send it');
 });
