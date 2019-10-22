@@ -1,7 +1,5 @@
 "use strict";
 
-// import path from 'path';
-// import express from 'express';
 var path = require("path");
 
 var express = require("express");
