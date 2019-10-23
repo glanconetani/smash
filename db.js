@@ -24,7 +24,7 @@ con.query('SELECT * FROM smash.characterInfo', function (err, rows, fields){
             if (!error && response.statusCode == 200) {
                 data = "data:" + response.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
             }
-        }).pipe(fs.createWriteStream('./images/full/' + (rows[i].name) + '.png'))
+        }).pipe(fs.createWriteStream('./images/full/' + (rows[i].display_name) + '.png'))
     }
 
     for (i = 0; i < 58; i++){
@@ -32,7 +32,7 @@ con.query('SELECT * FROM smash.characterInfo', function (err, rows, fields){
             if (!error && response.statusCode == 200) {
                 data = "data:" + response.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
             }
-        }).pipe(fs.createWriteStream('./images/thumbnails/' + (rows[i].name) + '.png'))
+        }).pipe(fs.createWriteStream('./images/thumbnails/' + (rows[i].display_name) + '.png'))
     }
     
     for (i = 0; i < 58; i++){
@@ -40,7 +40,7 @@ con.query('SELECT * FROM smash.characterInfo', function (err, rows, fields){
         if (!error && response.statusCode == 200) {
             data = (JSON.parse(body))
         }
-    }).pipe(fs.createWriteStream('./moves/' + (rows[i].name) + '.JSON'))
+    }).pipe(fs.createWriteStream('./moves/' + (rows[i].display_name) + '.JSON'))
 }
 
     let characterData = {
