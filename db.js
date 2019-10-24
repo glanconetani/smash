@@ -20,7 +20,7 @@ var con = mysql.createConnection({
 con.connect()
 con.query('SELECT * FROM smash.characterInfo', function (err, rows, fields){
     for (i = 0; i < 58; i++){
-        request.get(rows[0].main_image_url, function(error, response, body) {
+        request.get(rows[i].main_image_url, function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 data = "data:" + response.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
             }
@@ -28,7 +28,7 @@ con.query('SELECT * FROM smash.characterInfo', function (err, rows, fields){
     }
 
     for (i = 0; i < 58; i++){
-        request.get(rows[0].thumbnail_url, function(error, response, body) {
+        request.get(rows[i].thumbnail_url, function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 data = "data:" + response.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
             }
@@ -36,7 +36,7 @@ con.query('SELECT * FROM smash.characterInfo', function (err, rows, fields){
     }
     
     for (i = 0; i < 58; i++){
-    request.get(rows[0].related__smash4__moves, function(error, response, body) {
+    request.get(rows[i].related__smash4__moves, function(error, response, body) {
         if (!error && response.statusCode == 200) {
             data = (JSON.parse(body))
         }
