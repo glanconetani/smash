@@ -1,15 +1,12 @@
 "use strict";
 
-var _path = _interopRequireDefault(require("path"));
+var path = require("path");
 
-var _express = _interopRequireDefault(require("express"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var express = require("express");
 
 var PORT = process.env.HTTP_PORT || 4001;
-var app = (0, _express["default"])();
-app.use(_express["default"]["static"](_path["default"].join(__dirname, 'client', 'build')));
-console.log(__dirname);
+var app = express();
+app.use(express["static"](path.join(__dirname, 'client', 'build')));
 app.get('/', function (req, res) {
   res.send('just gonna send it');
 });
