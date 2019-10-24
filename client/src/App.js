@@ -21,6 +21,7 @@ class App extends Component {
   }
 
   render() {
+    console.log("we made it");
     return (
       <div className="App">
         <h1>{this.state.flower.name}</h1>
