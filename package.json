@@ -17,6 +17,8 @@
   "license": "ISC",
   "dependencies": {
     "atob": "^2.1.2",
+    "babel-loader": "^8.0.0-beta.6",
+    "babel-upgrade": "^1.0.1",
     "btoa": "^1.2.1",
     "concurrently": "^5.0.0",
     "cors": "^2.8.5",
