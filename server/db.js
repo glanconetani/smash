@@ -15,8 +15,6 @@ var con = mysql.createConnection({
 });
 
 
-
-
 con.connect()
 con.query('SELECT * FROM smash.characterInfo', function (err, rows, fields){
     for (i = 0; i < 58; i++){
@@ -24,7 +22,7 @@ con.query('SELECT * FROM smash.characterInfo', function (err, rows, fields){
             if (!error && response.statusCode == 200) {
                 data = "data:" + response.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
             }
-        }).pipe(fs.createWriteStream('./images/full/' + (rows[i].display_name) + '.png'))
+        }).pipe(fs.createWriteStream('../dist/images/full/' + (rows[i].display_name) + '.png'))
     }
 
     for (i = 0; i < 58; i++){
@@ -32,39 +30,39 @@ con.query('SELECT * FROM smash.characterInfo', function (err, rows, fields){
             if (!error && response.statusCode == 200) {
                 data = "data:" + response.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
             }
-        }).pipe(fs.createWriteStream('./images/thumbnails/' + (rows[i].display_name) + '.png'))
+        }).pipe(fs.createWriteStream('../dist/images/thumbnails/' + (rows[i].display_name) + '.png'))
     }
-    
+
     for (i = 0; i < 58; i++){
-    request.get(rows[0].related__smash4__moves, function(error, response, body) {
-        if (!error && response.statusCode == 200) {
-            data = (JSON.parse(body))
-        }
-    }).pipe(fs.createWriteStream('./moves/' + (rows[i].display_name) + '.JSON'))
-}
-
-    let characterData = {
-
-        //string 
-        displayName:"", 
-
-        //hex
-        color_theme: "",
-
+        request.get(rows[0].related__smash4__moves, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                data = (JSON.parse(body))
+            }
+        }).pipe(fs.createWriteStream('../dist/moves/' + (rows[i].display_name) + '.JSON'))
     }
-    
-    if (err) throw err
+
+        let characterData = {
+
+            //string
+            displayName:"",
+
+            //hex
+            color_theme: "",
+
+        }
+
+        if (err) throw err
 
 
-    characterData.name = rows[0].name
-    characterData.displayName = rows[0].display_name
-    characterData.color_theme = rows[0].color_theme
-   
-   
-    //let jsonString = JSON.stringify(characterData)
-    //console.log(characterData.thumbnail_image)
-    //console.log(jsonString)
-    //atob()
+        characterData.name = rows[0].name
+        characterData.displayName = rows[0].display_name
+        characterData.color_theme = rows[0].color_theme
+
+
+        //let jsonString = JSON.stringify(characterData)
+        //console.log(characterData.thumbnail_image)
+        //console.log(jsonString)
+        //atob()
 })
 
 
