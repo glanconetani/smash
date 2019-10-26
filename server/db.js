@@ -7,6 +7,10 @@
 //can either make async call to json and populate variables after
 //or make a sync call and create variables to place 
 
+
+//
+
+
 //requirements
 var mysql = require('mysql')
 var buffer = require('buffer')
@@ -18,13 +22,9 @@ const fetch = require("node-fetch")
 const axios = require('axios')
 
 
-function exportData(){
-    return testJSON;
-}
-
 //all database links
 var charInfo;
-var testJSON;
+var testJSON = ""
 
 
 var con = mysql.createConnection({
@@ -35,14 +35,12 @@ var con = mysql.createConnection({
 });
 
 
+function exportData(callback){
+    con.connect(function(err) {
+        if (err) throw err;
+       console.log("connected")
+    })
 
-
-con.connect(function(err) {
-     if (err) throw err;
-    console.log("connected")
-})
-
-function getCharacterInfo(callback){
     var sqlData = 'SELECT name, color_theme, display_name, related__smash4__moves, related__smash4__attributes FROM characterInfo'
 
     con.query(sqlData, function(err, results) {
@@ -53,7 +51,6 @@ function getCharacterInfo(callback){
     })
 }
 
-
 function getMoves(){
     //for each character
     for(var i = 0; i < 1; i++){
@@ -63,10 +60,10 @@ function getMoves(){
             return response.json()
         }).then(function(response){
             //each move we want
-            //console.log(response[0].Name)
-            testJSON = response
-            console.log(testJSON)
-            var name = "Bayonetta"
+            testJSON = JSON.stringify(response)
+            return testJSON
+            // console.log(testJSON)
+            // var name = "Bayonetta"
             //var jab_1 = "Bayonetta"
             // var uSmash
             // var fSmash
@@ -126,10 +123,6 @@ function getMoves(){
             //     }
             //     //return callback(results)
             // })
-            
-            
-            
-
         })
         .catch(function(error){
             console.log(error)
@@ -148,11 +141,12 @@ function getMoves(){
 //         })
 // }
 
-getCharacterInfo(function(result){
+exportData(function(result){
+    //charInfo has big database of all characters
     charInfo = result
-    getMoves()
+    //call get moves to get the moves JSON file of each character
+    return getMoves()
     //place the info from the characterInfo into each character's table
-
 })
 
 // getMoves()
