@@ -13,8 +13,8 @@ export default class App extends React.Component {
     return (
       <div>
         <Route exact path='/' component={HomePage} />
-        <Route path='/about' component={About} />
-        <Route path='/:id' component={CharacterPage} />
+        <Route exact path='/about' component={About} />
+        <Route exact path='/:id' component={CharacterPage} />
       </div>
     );
   }
