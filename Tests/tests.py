@@ -1,27 +1,27 @@
 import unittest
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-
-driver = webdriver.Chrome()
-driver.get("localhost:4001")
-
-
-class PythonTest(unittest.TestCase):
-
-    def setUp(self):
-        self.driver = webdriver.Chrome()
-
-    def testsearch(self):
-        driver = self.driver
-        driver.get("localhost:4001")
-        self.assertIn("Welcome", driver.title)
-        elem = driver.find_element_by_name("mario")
-        elem.click();
-        self.assertIn("mario", driver.title)
-
-
-    def tearDown(self):
-        self.driver.close()
-
-if __name__ == "__main__":
-    unittest.main()
+import time
+chromeDriver = webdriver.Chrome('C:\\Users\\Jake\\Downloads\\chromedriver_win32\\chromedriver')
+chromeDriver.get("localhost:4001")
+#UnitTest
+def characterLinkTest():
+    my_list = ["Mario", "Kirby", "Luigi", "Jigglypuff", "Zelda", "Falco", "Zero Suit Samus", "Donkey Kong", "Fox",
+     "Ness", "Peach", "Dr. Mario", "Marth", "Wario",
+     "Link", "Pikachu", "Captain Falcon", "Daisy", "Pichu", "Lucina", "Snake"]
+    time.sleep(6)
+    url = chromeDriver.current_url
+    for character in my_list:
+        time.sleep(3)
+        link = chromeDriver.find_element_by_link_text(character)
+        print(link)
+        link.click()
+        time.sleep(10)
+        url = chromeDriver.current_url
+        if not url in "localhost:4001/" + character:
+            print("Fail") 
+        chromeDriver.back()
+def main():
+    characterLinkTest()
+    time.sleep(8)
+    chromeDriver.quit()
+main()
