@@ -11,16 +11,16 @@ const js = {
 }
 
 const css = {
-    test: /\.css$/,
-    use: [
-      "style-loader",
-      {
-        loader: "css-loader",
-        options: {
-          modules: true
-        }
+  test: /\.css$/,
+  use: [
+    "style-loader",
+    {
+      loader: "css-loader",
+      options: {
+        modules: true
       }
-    ]
+    }
+  ]
 }
 
 const serverConfig = {

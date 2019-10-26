@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import { Link } from 'react-router-dom'
+import SmashTable from '../Components/SmashTable.jsx'
+import NavBar from '../Components/NavigationBar.jsx'
 export default class HomePage extends Component {
 
-  render () {
-      return (
+  render() {
+    return (
+      <div>
         <h1>Welcome to SmashDB!</h1>
-      );
+        <NavBar />
+        <Link to="/about"> About Us </Link>
+        <SmashTable />
+      </div>
+    );
   }
 }
