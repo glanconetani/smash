@@ -1,3 +1,17 @@
+//load JSON data into Variables
+//write variables to sql database
+//for (all characters - 58)
+//  load JSON data into variables
+//  push variables to the database through a query
+//end for
+//can either make async call to json and populate variables after
+//or make a sync call and create variables to place
+
+
+//
+
+
+//requirements
 var mysql = require('mysql')
 var buffer = require('buffer')
 var atob = require('atob')
@@ -5,6 +19,12 @@ var btoa = require('btoa')
 var fs = require('fs')
 var request = require('request').defaults({ encoding: null})
 const fetch = require("node-fetch")
+const axios = require('axios')
+
+
+//all database links
+var charInfo;
+var testJSON = ""
 
 
 var con = mysql.createConnection({
@@ -15,55 +35,195 @@ var con = mysql.createConnection({
 });
 
 
-con.connect()
-con.query('SELECT * FROM smash.characterInfo', function (err, rows, fields){
-    for (i = 0; i < 58; i++){
-        request.get(rows[i].main_image_url, function(error, response, body) {
-            if (!error && response.statusCode == 200) {
-                data = "data:" + response.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
-            }
-        }).pipe(fs.createWriteStream('../dist/images/full/' + (rows[i].display_name) + '.png'))
-    }
+function exportData(callback){
+    con.connect(function(err) {
+        if (err) throw err;
+       console.log("connected")
+    })
 
-    for (i = 0; i < 58; i++){
-        request.get(rows[i].thumbnail_url, function(error, response, body) {
-            if (!error && response.statusCode == 200) {
-                data = "data:" + response.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
-            }
-        }).pipe(fs.createWriteStream('../dist/images/thumbnails/' + (rows[i].display_name) + '.png'))
-    }
+    var sqlData = 'SELECT name, color_theme, display_name, related__smash4__moves, related__smash4__attributes FROM characterInfo'
 
-    for (i = 0; i < 58; i++){
-        request.get(rows[0].related__smash4__moves, function(error, response, body) {
-            if (!error && response.statusCode == 200) {
-                data = (JSON.parse(body))
-            }
-        }).pipe(fs.createWriteStream('../dist/moves/' + (rows[i].display_name) + '.JSON'))
-    }
-
-        let characterData = {
-
-            //string
-            displayName:"",
-
-            //hex
-            color_theme: "",
-
+    con.query(sqlData, function(err, results) {
+        if (err){
+            throw err
         }
+        return callback(results)
+    })
+}
 
-        if (err) throw err
+function getMoves(){
+    //for each character
+    for(var i = 0; i < 1; i++){
+        var movesURL = charInfo[i].related__smash4__moves
+        fetch(movesURL)
+        .then(function(response){
+            return response.json()
+        }).then(function(response){
+            //each move we want
+            testJSON = JSON.stringify(response)
+            return testJSON
+            // console.log(testJSON)
+            // var name = "Bayonetta"
+            //var jab_1 = "Bayonetta"
+            // var uSmash
+            // var fSmash
+            // var dSmash
+            // var dash_attack
+            // var uThrow
+            // var dThrow
+            // var fThrow
+            // var bThrow
+            // var nAir
+            // var uAir
+            // var dAir
+            // var fAir
+            // var bAir
+            // // var nB
+            // // var upB
+            // // var downB
+            // // var b
 
+            // for (var i=0; i<70; i++){
+            //     switch(response[i].Name){
+            //         case "Jab 1":
+            //             jab_1 = response[i].BaseDamage
+            //         case "Usmash":
+            //             uSmash = response[i].BaseDamage
+            //         case "Fsmash":
+            //             fSmash = response[i].BaseDamage
+            //         case "Dsmash":
+            //             dSmash = response[i].BaseDamage
+            //         case "Dash Attack":
+            //             dash_attack = response[i].BaseDamage
+            //         case "Uthrow":
+            //             uThrow = response[i].BaseDamage
+            //         case "Dthrow":
+            //             dThrow = response[i].BaseDamage
+            //         case "Fthrow":
+            //             fThrow = response[i].BaseDamage
+            //         case "Bthrow":
+            //             bThrow = response[i].BaseDamage
+            //         case "Nair":
+            //             nAir = response[i].BaseDamage
+            //         case "Uair (Hit 1)":
+            //             uAir = response[i].BaseDamage
+            //         case "Dair (Hits 1-6)":
+            //             dAir = response[i].BaseDamage
+            //         case "Fair (Hit 1)":
+            //             fAir = response[i].BaseDamage
+            //         case "Bair":
+            //             bAir = response[i].BaseDamage
+            //     }
+            // }
+            //con.query('CREATE TABLE ?? (column_name1 data_type(size), column_name2 data_type(size), column_name3 data_type(size))', [tableName], function (error, results) {
+            //push all values to sql
+            // con.query("INSERT INTO Bayonetta (name, display_name, color_theme) VALUES ('Bayonetta', 'Bayonetta', 'Bayonetta')", function(err, results) {
+            //     if (err){
+            //         throw err
+            //     }
+            //     //return callback(results)
+            // })
+        })
+        .catch(function(error){
+            console.log(error)
+        })
+    }
+}
 
-        characterData.name = rows[0].name
-        characterData.displayName = rows[0].display_name
-        characterData.color_theme = rows[0].color_theme
+// function getWeight(){
+//     //for
+//         var attributesURL = charInfo[0].related__smash4__attributes
+//         fetch(attributesURL)
+//         .then(function(response) {
+//             return response.json()
+//         }).then(function(response){
+//             console.log()
+//         })
+// }
 
-
-        //let jsonString = JSON.stringify(characterData)
-        //console.log(characterData.thumbnail_image)
-        //console.log(jsonString)
-        //atob()
+exportData(function(result){
+    //charInfo has big database of all characters
+    charInfo = result
+    //call get moves to get the moves JSON file of each character
+    return getMoves()
+    //place the info from the characterInfo into each character's table
 })
 
+// getMoves()
 
-con.end()
+    // con.query('SELECT name, color_theme, display_name, related_smash4_moves FROM characterInfo', function (err, result, fields){
+    //     console.log(result)
+        //images
+
+        // for (var i = 1; i < 58; i++){
+        //     var j = i
+        //     request.get(rows[0].main_image_url, function(error, response, body) {
+        //     if (!error && response.statusCode == 200) {
+        //         var data = "data:" + response.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
+        //     }
+        //     }).pipe(fs.createWriteStream('./images/full/' + (rows[i].namea) + '.png'))
+        // }
+        //thumbnails
+    //     for (var i = 1; i < 58; i++){
+    //         var j = i
+    //         request.get(rows[j].thumbnail_url, function(error, response, body) {
+    //         if (!error && response.statusCode == 200) {
+    //             var data = "data:" + response.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
+    //         }
+    //         }).pipe(fs.createWriteStream('./images/thumbnails/' + (rows[i].name) + '.png'))
+    //     }
+
+    //     //get JSON files --placed statically into folder
+    //     // for (var i = 1; i < 58; i++){
+    //     //     request.get(rows[i].related__smash4__moves, function(error, response, body) {
+    //     //     if (!error && response.statusCode == 200) {
+    //     //         var data = (JSON.parse(body))
+    //     //     }
+    //     //     }).pipe(fs.createWriteStream('./moves/' + (rows[i].name) + '.JSON'))
+    //     // }
+
+    //     for(var i = 1; i < 58; i++){
+    //         var j = i
+    //         fetch(rows[j].related__smash4__moves).then(response => {
+    //             return response.json()
+    //         }).then(data => {
+    //             // Work with JSON data here
+
+    //             console.log(data)
+    //         }).catch(err => {
+    //             // Do something for an error here
+    //         })
+    //     }
+
+
+    //     // function populateDatabase(){
+    //     //     //async
+    //     //     function loadJSON(callback) {
+    //     //         for (var i = 1; i < 58; i++){
+    //     //             var xobj = new XMLHttpRequest();
+    //     //             xobj.overrideMimeType("./moves");
+    //     //             xobj.open('GET', 'my_data.json', false); // Replace 'my_data' with the path to your file
+    //     //             xobj.onreadystatechange = function () {
+    //     //                 if (xobj.readyState == 4 && xobj.status == "200") {
+    //     //                     // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+    //     //                     callback(xobj.responseText);
+    //     //                 }
+    //     //             };
+    //     //             xobj.send(null);
+    //     //         }
+    //     //     }
+
+    //     //     function init() {
+    //     //         loadJSON(function(response) {
+    //     //         // Parse JSON string into object
+    //     //             var actual_JSON = JSON.parse(response);
+    //     //         });
+    //     //     }
+    //     }
+    //     //get JSON information and put into variables or write directly to sql database
+
+
+
+   // })
+
+export {exportData}
