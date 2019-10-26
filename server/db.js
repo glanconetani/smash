@@ -17,8 +17,14 @@ var request = require('request').defaults({ encoding: null})
 const fetch = require("node-fetch")
 const axios = require('axios')
 
-//character variables
+
+function exportData(){
+    return testJSON;
+}
+
+//all database links
 var charInfo;
+var testJSON;
 
 
 var con = mysql.createConnection({
@@ -57,7 +63,9 @@ function getMoves(){
             return response.json()
         }).then(function(response){
             //each move we want
-            console.log(response[0].Name)
+            //console.log(response[0].Name)
+            testJSON = response
+            console.log(testJSON)
             var name = "Bayonetta"
             //var jab_1 = "Bayonetta"
             // var uSmash
@@ -112,12 +120,12 @@ function getMoves(){
             // }
             //con.query('CREATE TABLE ?? (column_name1 data_type(size), column_name2 data_type(size), column_name3 data_type(size))', [tableName], function (error, results) {
             //push all values to sql
-            con.query("INSERT INTO Bayonetta (name, display_name, color_theme) VALUES ('Bayonetta', 'Bayonetta', 'Bayonetta')", function(err, results) {
-                if (err){
-                    throw err
-                }
-                //return callback(results)
-            })
+            // con.query("INSERT INTO Bayonetta (name, display_name, color_theme) VALUES ('Bayonetta', 'Bayonetta', 'Bayonetta')", function(err, results) {
+            //     if (err){
+            //         throw err
+            //     }
+            //     //return callback(results)
+            // })
             
             
             
@@ -223,3 +231,5 @@ getCharacterInfo(function(result){
         
         
    // })
+
+export {exportData}
