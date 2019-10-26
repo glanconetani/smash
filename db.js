@@ -60,7 +60,7 @@ function getMoves(){
             //each move we want
             console.log(response[0].Name)
             var name = "Bayonetta"
-            //var jab_1 = "Bayonetta"
+            //var jab1 = "Bayonetta"
             // var uSmash
             // var fSmash
             // var dSmash
@@ -82,7 +82,7 @@ function getMoves(){
             // for (var i=0; i<70; i++){
             //     switch(response[i].Name){
             //         case "Jab 1":
-            //             jab_1 = response[i].BaseDamage
+            //             jab1 = response[i].BaseDamage
             //         case "Usmash":
             //             uSmash = response[i].BaseDamage
             //         case "Fsmash":
