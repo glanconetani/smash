@@ -9,7 +9,7 @@ class SmashTable extends Component {
                 <tbody>
                     <tr>
                         <td>
-                            <Link to='/Mario'><img src={marioPic} alt="Mario" /></Link>
+                            <Link to='/Mario'><img src={ require('../../../images/full/Mario.png') } alt="Mario" /></Link>
                         </td>
                         <td>
                             <Link to='/Donkey_Kong'>Donkey Kong</Link></td>
