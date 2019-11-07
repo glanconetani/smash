@@ -14,19 +14,19 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 console.log(__dirname);
 const characters = {};
 
-app.get('/*', function(req, res) {
-  const context = {};
+app.get('/*', function (req, res) {
+    const context = {};
 
 
-  const component = (
-      <StaticRouter location={req.url} context={context}>
-        <App characters={characters}/>
-      </StaticRouter>
-  );
-  const ss_react = renderToString(component);
+    const component = (
+        <StaticRouter location={req.url} context={context}>
+            <App characters={characters} />
+        </StaticRouter>
+    );
+    const ss_react = renderToString(component);
 
-  res.writeHead( 200, { "Content-Type": "text/html" });
-  res.end(htmlTemplate(component));
+    res.writeHead(200, { "Content-Type": "text/html" });
+    res.end(htmlTemplate(component));
 })
 
 function htmlTemplate(component) {
@@ -50,5 +50,5 @@ function htmlTemplate(component) {
 
 
 app.listen(PORT, () => {
-  console.log(`Server listening at port ${PORT}.`);
+    console.log(`Server listening at port ${PORT}.`);
 });

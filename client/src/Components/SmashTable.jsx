@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
-import marioPic from '../../../images/thumbnails/Mario.png'
+import marioPic from "../../../images/thumbnails/Mario.png"
+
 class SmashTable extends Component {
     render() {
         return (
@@ -9,10 +10,10 @@ class SmashTable extends Component {
                 <tbody>
                     <tr>
                         <td>
-                            <Link to='/Mario'><img src={marioPic} alt="Mario" /></Link>
+                            <Link to='/Mario'><img src={marioPic} alt="mario" /></Link>
                         </td>
                         <td>
-                            <Link to='/Donkey_Kong'>Donkey Kong</Link></td>
+                            <Link to='/Donkey_Kong'>Donkey_Kong</Link></td>
                         <td>
                             <Link to='/Link'>Link</Link></td>
                     </tr>
@@ -30,7 +31,7 @@ class SmashTable extends Component {
                         <td>
                             <Link to='/Ness'>Ness</Link></td>
                         <td>
-                            <Link to='/Captain_Falcon'>Captain Falcon</Link></td>
+                            <Link to='/Captain_Falcon'>Captain_Falcon</Link></td>
                     </tr>
                     <tr>
                         <td>
@@ -44,7 +45,7 @@ class SmashTable extends Component {
                         <td>
                             <Link to='/Zelda'>Zelda</Link></td>
                         <td>
-                            <Link to='/Dr._Mario'>Dr. Mario</Link></td>
+                            <Link to='/Dr._Mario'>Dr._Mario</Link></td>
                         <td>
                             <Link to='/Pichu'>Pichu</Link></td>
                     </tr>
@@ -58,7 +59,7 @@ class SmashTable extends Component {
                     </tr>
                     <tr>
                         <td>
-                            <Link to='/Zero_Suit_Samus'>Zero Suit Samus</Link></td>
+                            <Link to='/Zero_Suit_Samus'>Zero_Suit_Samus</Link></td>
                         <td>
                             <Link to='/Wario'>Wario</Link></td>
                         <td>

@@ -23,6 +23,12 @@ const css = {
   ]
 }
 
+const png = {
+  test: /\.(jpe?g|png|gif|svg)$/i,
+  loader: "url-loader?name=app/images/[name].[ext]"
+}
+
+
 const serverConfig = {
   mode: 'development',
   target: 'node',
@@ -34,7 +40,8 @@ const serverConfig = {
     'index.js': path.resolve(__dirname, 'server/server.js')
   },
   module: {
-    rules: [js]
+    rules: [js, png]
+
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -49,7 +56,7 @@ const clientConfig = {
     'index.js': path.resolve(__dirname, 'client/src/index.js')
   },
   module: {
-    rules: [js, css]
+    rules: [js, css, png]
   },
   optimization: {
     splitChunks: {
