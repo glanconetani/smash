@@ -16,9 +16,8 @@ class NavigationBar extends Component {
         return (
             <div>
                 <NavBar>
-                    NavBar
-                    Link 1
-                    Link 2
+                    Search Bar      
+                    About Us
                 </NavBar>
 
             </div>
