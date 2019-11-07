@@ -10,7 +10,6 @@ export default class HomePage extends Component {
       <div>
         <h1>Welcome to SmashDB!</h1>
         <NavBar />
-        <Link to="/about"> About Us </Link>
         <SmashTable />
       </div>
     );
