@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'
-import AboutUs from './AboutUs.jsx';
 import logoimg from '../../../images/SmashLogo.jpg';
 
 export const NavBar = styled.div`
