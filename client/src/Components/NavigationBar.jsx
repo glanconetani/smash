@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom'
+import AboutUs from './AboutUs.jsx';
+import logoimg from '../../../images/SmashLogo.jpg';
 
 export const NavBar = styled.div`
 background-color: #669;
@@ -16,8 +19,8 @@ class NavigationBar extends Component {
         return (
             <div>
                 <NavBar>
-                    Search Bar      
-                    About Us
+                <img src={logoimg} alt="Logo" />   
+                <Link to='/AboutUs'>About Us</Link>
                 </NavBar>
 
             </div>
