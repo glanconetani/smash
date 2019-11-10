@@ -20,6 +20,7 @@ class NavigationBar extends Component {
                 <NavBar>
                 <img src={logoimg} alt="Logo" />   
                 <Link to='/AboutUs'>About Us</Link>
+                <input type="text" className="input" placeholder="Search..." />
                 </NavBar>
 
             </div>
