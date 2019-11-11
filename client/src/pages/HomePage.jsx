@@ -5,6 +5,7 @@ import SmashTable from '../Components/SmashTable.jsx'
 import NavBar from '../Components/NavigationBar.jsx'
 import Search from "../Components/Search.jsx";
 
+
 export default class HomePage extends Component {
   render() {
     return (

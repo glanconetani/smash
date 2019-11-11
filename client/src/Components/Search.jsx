@@ -149,8 +149,6 @@ let charList = [{
   name: 'Incineroar',
 }]
 
-
-
 class Search extends React.Component {
   constructor(){
     super();
@@ -163,6 +161,7 @@ class Search extends React.Component {
     this.setState({search: event.target.value})
   }
     render() {
+      console.log(this.props);
       let filteredSearch = this.props.charList.filter(
         (Character) => {
           return Character.name.toLowerCase().indexOf(this.state.search.toLowerCase) !== -1;
