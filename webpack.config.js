@@ -12,15 +12,7 @@ const js = {
 
 const css = {
   test: /\.css$/,
-  use: [
-    "style-loader",
-    {
-      loader: "css-loader",
-      options: {
-        modules: true
-      }
-    }
-  ]
+  use: ['style-loader','css-loader']
 }
 
 const png = {
@@ -69,4 +61,6 @@ const clientConfig = {
   }
 }
 
-module.exports = [serverConfig, clientConfig]
+module.exports = 
+  [serverConfig, clientConfig]
+
