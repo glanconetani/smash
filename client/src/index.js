@@ -10,11 +10,11 @@ import createStore from "../../server/store.js";
 const store = createStore(window.REDUX);
 
 const HydratedApp = () => (
-  <ReduxProvider store={store}>
-    <Router>
-        <App />
-    </Router>
-  </ReduxProvider>
+    <ReduxProvider store={store}>
+      <Router>
+          <App />
+      </Router>
+    </ReduxProvider>
 );
 
 ReactDOM.hydrate(<HydratedApp/>, document.getElementById('root'));

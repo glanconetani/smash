@@ -14,30 +14,29 @@ var serialize = require("serialize-javascript");
 const PORT = process.env.HTTP_PORT || 4001;
 const app = express();
 app.use('/static', express.static(path.join(__dirname, 'public')));
-console.log(__dirname);
+app.use(express.static(path.join(__dirname, 'moves')));
 
 app.get('/*', function(req, res) {
   const context = {};
   const store = createStore();
-  store.dispatch(initialize());
+  //store.dispatch(initialize());
+  store.dispatch(fetchCharacters());
 
-  Promise.all([store.dispatch(fetchCharacters())]).then(() => {
-    const component = (
+  const component = (
       <ReduxProvider store={store}>
         <StaticRouter location={req.url} context={context}>
           <App/>
         </StaticRouter>
       </ReduxProvider>
-    );
-    const ss_react = renderToString(component);
-    const ss_state = store.getState();
+  );
+  const ss_react = renderToString(component);
+  const ss_state = store.getState();
 
-    res.writeHead( 200, { "Content-Type": "text/html" });
-    res.end(htmlTemplate(component, ss_state));
-  });
+  res.writeHead( 200, { "Content-Type": "text/html" });
+  res.end(htmlTemplate(ss_react, ss_state));
 });
 
-function htmlTemplate(component, ss_state) {
+function htmlTemplate(ss_react, ss_state) {
     return `
         <!DOCTYPE html>
         <html>
@@ -47,7 +46,7 @@ function htmlTemplate(component, ss_state) {
         </head>
 
         <body>
-            <div id="root">${component}</div>
+            <div id="root">${ss_react}</div>
             <script>window.REDUX = ${serialize(ss_state, { isJSON: true })}</script>
             <script src="./static/index.js"></script>
             <script src="./static/vendors~index.js"></script>
