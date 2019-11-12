@@ -6,7 +6,6 @@ export default class CharacterPage extends Component {
   render() {
 
     let character = this.props.location.pathname.split('/')[1];
-    console.log(this.props)
 
     return (
       <React.Fragment>
