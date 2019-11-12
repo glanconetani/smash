@@ -229,7 +229,8 @@ let charList = [{
 
 export default class HomePage extends Component {
   HiItems(items) {
-    console.log(items)
+    console.log(items.value)
+    
   }
   render() {
     return (
