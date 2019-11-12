@@ -1,11 +1,11 @@
 import React from 'react';
 import { StaticRouter } from 'react-router-dom';
 import { Provider as ReduxProvider } from "react-redux";
-import { getCharData } from './db.js';
+import { getData } from './db.js';
 
 import App from '../client/src/App.js';
 import { renderToString } from "react-dom/server";
-import createStore, { initialize, fetchCharacters } from './store.js';
+import createStore, { initialize, fetchCharacters, storeData } from './store.js';
 
 var path = require("path");
 var express = require("express");
@@ -20,22 +20,24 @@ app.get('/*', function (req, res) {
     const context = {};
     const store = createStore();
 
-    getCharData("Bayonetta");
+    getData("Bayonetta").then((characters) => {
+        console.log(characters);
+        Promise.all([store.dispatch(storeData(characters))]).then(() => {
+          console.log(characters);
+          const component = (
+              <ReduxProvider store={store}>
+                  <StaticRouter location={req.url} context={context}>
+                      <App />
+                  </StaticRouter>
+              </ReduxProvider>
+          );
+          const ss_react = renderToString(component);
+          const ss_state = store.getState();
 
-    store.dispatch(fetchCharacters());
-
-    const component = (
-        <ReduxProvider store={store}>
-            <StaticRouter location={req.url} context={context}>
-                <App />
-            </StaticRouter>
-        </ReduxProvider>
-    );
-    const ss_react = renderToString(component);
-    const ss_state = store.getState();
-
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.end(htmlTemplate(ss_react, ss_state));
+          res.writeHead(200, { "Content-Type": "text/html" });
+          res.end(htmlTemplate(ss_react, ss_state));
+        });
+    });
 });
 
 function htmlTemplate(ss_react, ss_state) {

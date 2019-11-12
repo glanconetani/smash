@@ -22,32 +22,35 @@ var getCharData = {
     }
 }
 
-function getData(character) {
+export const getData = function(character) {
+    return new Promise(function(resolve, reject) {
+        var con = mysql.createConnection({
+            host: 'smash-project.cwrpa3uglhdr.us-east-2.rds.amazonaws.com',
+            user: 'master',
+            password: '461lsmash!',
+            database: 'smash'
+        });
 
-    var con = mysql.createConnection({
-        host: 'smash-project.cwrpa3uglhdr.us-east-2.rds.amazonaws.com',
-        user: 'master',
-        password: '461lsmash!',
-        database: 'smash'
-    });
+        con.connect(function(err) {
+            if (err) throw err;
+            console.log("connected")
+        })
 
-    con.connect(function(err) {
-        if (err) throw err;
-        console.log("connected")
-    })
+        var sqlData = 'SELECT * FROM ' + character
 
-    var sqlData = 'SELECT * FROM ' + character
-
-    con.query(sqlData, function(err, results) {
-        if (err) {
-            throw err;
-        }
-        console.log(results)
-        //return callback(results)
+        con.query(sqlData, function(err, results) {
+            if (err) {
+                reject("fail");
+            } else {
+                console.log("have the results");
+                console.log(results);
+                resolve(results);
+            }
+        })
     })
 }
 
-module.exports = getCharData, HelloWorld;
+//module.exports = getCharData, HelloWorld;
 
 // function getMoves(){
 //     //for each character

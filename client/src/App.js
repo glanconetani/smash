@@ -20,9 +20,6 @@ class App extends React.Component {
     return (
       <div>
         <Route exact path='/' component={HomePage} />
-
-
-        <Route exact path='/about' component={About} />
         <Route exact path='/AboutUs' component={AboutUs} />
         <Route exact path='/characters/:id' component={CharacterPage} />
       </div>
@@ -31,7 +28,6 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  name: state.test,
   characters: state.characters,
   a: 42,
 });
