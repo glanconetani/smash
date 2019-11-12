@@ -3,26 +3,26 @@ var buffer = require('buffer')
 var atob = require('atob')
 var btoa = require('btoa')
 var fs = require('fs')
-var request = require('request').defaults({ encoding: null})
+var request = require('request').defaults({ encoding: null })
 const fetch = require("node-fetch")
 const axios = require('axios')
 
 
 var HelloWorld = {
-    HelloWorld: function(){
+    HelloWorld: function() {
         console.log("Hello World");
     }
 }
 
 var getCharData = {
-    getCharData: function(character){
+    getCharData: function(character) {
         var results = getData(character)
         console.log(results)
         return results
     }
 }
 
-function getData(character){
+function getData(character) {
 
     var con = mysql.createConnection({
         host: 'smash-project.cwrpa3uglhdr.us-east-2.rds.amazonaws.com',
@@ -33,13 +33,13 @@ function getData(character){
 
     con.connect(function(err) {
         if (err) throw err;
-       console.log("connected")
+        console.log("connected")
     })
 
     var sqlData = 'SELECT * FROM ' + character
 
     con.query(sqlData, function(err, results) {
-        if (err){
+        if (err) {
             throw err;
         }
         console.log(results)

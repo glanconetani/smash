@@ -12,16 +12,14 @@ const js = {
 
 const css = {
   test: /\.css$/,
-  use: [
-    "style-loader",
-    {
-      loader: "css-loader",
-      options: {
-        modules: true
-      }
-    }
-  ]
+  use: ['style-loader','css-loader']
 }
+
+const png = {
+  test: /\.(jpe?g|png|gif|svg)$/i,
+  loader: "url-loader?name=app/images/[name].[ext]"
+}
+
 
 const serverConfig = {
   mode: 'development',
@@ -34,7 +32,8 @@ const serverConfig = {
     'index.js': path.resolve(__dirname, 'server/server.js')
   },
   module: {
-    rules: [js]
+    rules: [js, png]
+
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -49,7 +48,7 @@ const clientConfig = {
     'index.js': path.resolve(__dirname, 'client/src/index.js')
   },
   module: {
-    rules: [js, css]
+    rules: [js, css, png]
   },
   optimization: {
     splitChunks: {
@@ -62,4 +61,6 @@ const clientConfig = {
   }
 }
 
-module.exports = [serverConfig, clientConfig]
+module.exports = 
+  [serverConfig, clientConfig]
+
