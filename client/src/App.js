@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, Switch, Route } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchCharacters } from '../../server/store.js';
 
 import HomePage from './pages/HomePage.jsx';
 import About from './pages/About.jsx';
@@ -11,6 +10,10 @@ import CharacterPage from './pages/CharacterPage.jsx';
 
 
 class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
 
   render() {
 
@@ -28,11 +31,10 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  name: state.data,
+  name: state.test,
+  characters: state.characters,
+  a: 42,
 });
 
-const mapDispatchToProps = {
-  fetchCharacters,
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

@@ -1,9 +1,10 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 
-export const fetchCharacters = () =>
-    storeData({
-      "name": "TestCharacter"
-    });
+const test = {
+   test: 42
+}
+
+export const fetchCharacters = () => storeData(test);
 
 export const initialize = () => ({
     type: "INITIALIZE",
@@ -17,10 +18,15 @@ const storeData = (data) => ({
     data: data,
 });
 
-const reducer = (state, action) => {
-    if (typeof state === "undefined") {
-        state = 0;
-    }
+const initialState = {
+    test: 42,
+    characters: []
+}
+
+const reducer = (state = initialState, action) => {
+
+    console.log(action.data);
+    return state;
 
     switch (action.type) {
       case "STORE":

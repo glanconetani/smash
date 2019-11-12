@@ -14,19 +14,19 @@ export const Content = styled.div`
 class NavigationBar extends Component {
     constuctor() {
         this.routeChange = this.routeChange.bind(this);
-      }
-    
-      routeChange() {
+    }
+
+    routeChange() {
         let path = `newPath`;
-        this.props.history.push(path);
-      }
+        //this.props.history.push(path);
+    }
     render() {
         return (
             <div>
                 <NavBar>
-                <img src={logoimg} alt="Logo" />   
-                <Link to='/AboutUs'>About Us</Link>
-                <input type="text" className="searchTerm" placeholder="What are you looking for?"/>
+                    <img src={logoimg} alt="Logo" />
+                    <Link to='/AboutUs'>About Us</Link>
+                    <input type="text" className="searchTerm" placeholder="What are you looking for?" />
                 </NavBar>
 
             </div>

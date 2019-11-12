@@ -1,17 +1,3 @@
-//load JSON data into Variables
-//write variables to sql database
-//for (all characters - 58)
-//  load JSON data into variables
-//  push variables to the database through a query
-//end for
-//can either make async call to json and populate variables after
-//or make a sync call and create variables to place
-
-
-//
-
-
-//requirements
 var mysql = require('mysql')
 var buffer = require('buffer')
 var atob = require('atob')
@@ -23,12 +9,13 @@ const axios = require('axios')
 
 
 var HelloWorld = {
-    HelloWorld: function () {
+    HelloWorld: function() {
         console.log("Hello World");
     }
 }
+
 var getCharData = {
-    getCharData: function (character) {
+    getCharData: function(character) {
         var results = getData(character)
         console.log(results)
         return results
@@ -44,19 +31,19 @@ function getData(character) {
         database: 'smash'
     });
 
-    con.connect(function (err) {
+    con.connect(function(err) {
         if (err) throw err;
         console.log("connected")
     })
 
     var sqlData = 'SELECT * FROM ' + character
 
-    con.query(sqlData, function (err, results) {
+    con.query(sqlData, function(err, results) {
         if (err) {
-            throw err
+            throw err;
         }
-        console.log(results[0])
-        return callback(results)
+        console.log(results)
+        //return callback(results)
     })
 }
 
