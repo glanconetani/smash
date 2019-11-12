@@ -17,7 +17,7 @@ const HydratedApp = () => (
   </ReduxProvider>
 );
 
-ReactDOM.hydrate(<HydratedApp/>, document.getElementById('root'));
+ReactDOM.hydrate(<HydratedApp />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

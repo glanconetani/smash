@@ -17,51 +17,62 @@ var buffer = require('buffer')
 var atob = require('atob')
 var btoa = require('btoa')
 var fs = require('fs')
-var request = require('request').defaults({ encoding: null})
+var request = require('request').defaults({ encoding: null })
 const fetch = require("node-fetch")
 const axios = require('axios')
 
 
-//all database links
-var charInfo;
-var testJSON = ""
+var HelloWorld = {
+    HelloWorld: function () {
+        console.log("Hello World");
+    }
+}
+var getCharData = {
+    getCharData: function (character) {
+        var results = getData(character)
+        console.log(results)
+        return results
+    }
+}
 
+function getData(character) {
 
-var con = mysql.createConnection({
-    host: 'smash-project.cwrpa3uglhdr.us-east-2.rds.amazonaws.com',
-    user: 'master',
-    password: '461lsmash!',
-    database: 'smash'
-});
+    var con = mysql.createConnection({
+        host: 'smash-project.cwrpa3uglhdr.us-east-2.rds.amazonaws.com',
+        user: 'master',
+        password: '461lsmash!',
+        database: 'smash'
+    });
 
-
-function exportData(callback){
-    con.connect(function(err) {
+    con.connect(function (err) {
         if (err) throw err;
-       console.log("connected")
+        console.log("connected")
     })
 
-    var sqlData = 'SELECT name, color_theme, display_name, related__smash4__moves, related__smash4__attributes FROM characterInfo'
+    var sqlData = 'SELECT * FROM ' + character
 
-    con.query(sqlData, function(err, results) {
-        if (err){
+    con.query(sqlData, function (err, results) {
+        if (err) {
             throw err
         }
+        console.log(results[0])
         return callback(results)
     })
 }
 
-function getMoves(){
-    //for each character
-    for(var i = 0; i < 1; i++){
-        var movesURL = charInfo[i].related__smash4__moves
-        fetch(movesURL)
-        .then(function(response){
-            return response.json()
-        }).then(function(response){
-            //each move we want
-            testJSON = JSON.stringify(response)
-            return testJSON
+module.exports = getCharData, HelloWorld;
+
+// function getMoves(){
+//     //for each character
+//     for(var i = 0; i < 1; i++){
+//         var movesURL = charInfo[i].related__smash4__moves
+//         fetch(movesURL)
+//         .then(function(response){
+//             return response.json()
+//         }).then(function(response){
+//             //each move we want
+//             testJSON = JSON.stringify(response)
+//             return testJSON
             // console.log(testJSON)
             // var name = "Bayonetta"
             //var jab_1 = "Bayonetta"
@@ -123,12 +134,12 @@ function getMoves(){
             //     }
             //     //return callback(results)
             // })
-        })
-        .catch(function(error){
-            console.log(error)
-        })
-    }
-}
+//         })
+//         .catch(function(error){
+//             console.log(error)
+//         })
+//     }
+// }
 
 // function getWeight(){
 //     //for
@@ -141,13 +152,13 @@ function getMoves(){
 //         })
 // }
 
-exportData(function(result){
-    //charInfo has big database of all characters
-    charInfo = result
-    //call get moves to get the moves JSON file of each character
-    return getMoves()
-    //place the info from the characterInfo into each character's table
-})
+// exportData(function(result){
+//     //charInfo has big database of all characters
+//     charInfo = result
+//     //call get moves to get the moves JSON file of each character
+//     return getMoves()
+//     //place the info from the characterInfo into each character's table
+// })
 
 // getMoves()
 
@@ -225,5 +236,3 @@ exportData(function(result){
 
 
    // })
-
-export {exportData}

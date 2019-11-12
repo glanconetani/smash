@@ -6,14 +6,15 @@ import { fetchCharacters } from '../../server/store.js';
 
 import HomePage from './pages/HomePage.jsx';
 import About from './pages/About.jsx';
+import AboutUs from './Components/AboutUs.jsx';
 import CharacterPage from './pages/CharacterPage.jsx';
 
 
 class App extends React.Component {
-  componentDidMount( ) {
-      if ( this.props.length <= 0 ) {
-          this.props.fetchCharacters();
-      }
+  componentDidMount() {
+    if (this.props.length <= 0) {
+      this.props.fetchCharacters();
+    }
   }
 
   render() {
@@ -21,26 +22,23 @@ class App extends React.Component {
 
     return (
       <div>
-<<<<<<< HEAD
         <Route exact path='/' component={HomePage} />
-        <Route path='/about' component={About} />
-        <Route path='/:id' component={CharacterPage} />
-=======
-              <Route exact path='/' component={HomePage}/>
-              <Route exact path='/about' component={About}/>
-              <Route path='/:id' component={CharacterPage}/>
->>>>>>> 7e818788c308782905f43bdf46120ae631b6fbcd
+
+
+        <Route exact path='/about' component={About} />
+        <Route exact path='/AboutUs' component={AboutUs} />
+        <Route exact path='/characters/:id' component={CharacterPage} />
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ( {
-    name: state.data,
-} );
+const mapStateToProps = (state) => ({
+  name: state.data,
+});
 
 const mapDispatchToProps = {
-    fetchCharacters,
+  fetchCharacters,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

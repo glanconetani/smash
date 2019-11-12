@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node server.js --ignore client",
+    "start:dev": "webpack-dev-server --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack && concurrently \"webpack --watch\" \"nodemon dist\"",
     "build": "webpack --config webpack.prod.js"
@@ -48,8 +49,10 @@
     "@types/node": "^12.11.2",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.0",
+    "file-loader": "^4.2.0",
     "nodemon": "^1.19.4",
     "style-loader": "^1.0.0",
+    "url-loader": "^2.2.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.9.0",
