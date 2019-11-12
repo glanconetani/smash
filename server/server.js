@@ -1,6 +1,7 @@
 import React from 'react';
 import { StaticRouter } from 'react-router-dom';
 import { Provider as ReduxProvider } from "react-redux";
+import { getCharData } from './db.js';
 
 import App from '../client/src/App.js';
 import { renderToString } from "react-dom/server";
@@ -9,7 +10,6 @@ import createStore, { initialize, fetchCharacters } from './store.js';
 var path = require("path");
 var express = require("express");
 var serialize = require("serialize-javascript");
-//var db = require('./db');
 
 const PORT = process.env.HTTP_PORT || 4001;
 const app = express();
@@ -19,7 +19,9 @@ app.use(express.static(path.join(__dirname, 'moves')));
 app.get('/*', function(req, res) {
   const context = {};
   const store = createStore();
-  //store.dispatch(initialize());
+
+  getCharData("Bayonetta");
+
   store.dispatch(fetchCharacters());
 
   const component = (

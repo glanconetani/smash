@@ -1,6 +1,4 @@
 import { createStore, applyMiddleware } from 'redux';
-import fetch from "isomorphic-fetch";
-import thunkMiddleware from "redux-thunk";
 
 const test = {
    test: 42
@@ -8,17 +6,12 @@ const test = {
 
 export const fetchCharacters = () => storeData(test);
 
-const fetchData = () => {
-    return fetch("http://localhost:4001/Bayonetta.JSON")
-    .then(res => res.json())
-}
-
 export const initialize = () => ({
     type: "INITIALIZE",
 });
 
 export default (initState) =>
-    createStore(reducer, initState, applyMiddleware(thunkMiddleware));
+    createStore(reducer, initState);
 
 const storeData = (data) => ({
     type: "STORE",
@@ -32,5 +25,15 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
 
+    console.log(action.data);
     return state;
+
+    switch (action.type) {
+      case "STORE":
+        return action.data;
+      case "INITIALIZE":
+        return true;
+      default:
+        return state;
+    }
 }
