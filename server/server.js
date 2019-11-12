@@ -1,7 +1,10 @@
 import React from 'react';
 import { StaticRouter } from 'react-router-dom';
+import { Provider as ReduxProvider } from "react-redux";
+
 import App from '../client/src/App.js';
 import { renderToString } from "react-dom/server";
+import createStore, { initialize, fetchCharacters } from './store.js';
 
 var path = require("path");
 var express = require("express");
@@ -12,24 +15,29 @@ const PORT = process.env.HTTP_PORT || 4001;
 const app = express();
 app.use('/static', express.static(path.join(__dirname, 'public')));
 console.log(__dirname);
-const characters = {};
 
 app.get('/*', function(req, res) {
   const context = {};
+  const store = createStore();
+  store.dispatch(initialize());
 
+  Promise.all([store.dispatch(fetchCharacters())]).then(() => {
+    const component = (
+      <ReduxProvider store={store}>
+        <StaticRouter location={req.url} context={context}>
+          <App/>
+        </StaticRouter>
+      </ReduxProvider>
+    );
+    const ss_react = renderToString(component);
+    const ss_state = store.getState();
 
-  const component = (
-      <StaticRouter location={req.url} context={context}>
-        <App characters={characters}/>
-      </StaticRouter>
-  );
-  const ss_react = renderToString(component);
+    res.writeHead( 200, { "Content-Type": "text/html" });
+    res.end(htmlTemplate(component, ss_state));
+  });
+});
 
-  res.writeHead( 200, { "Content-Type": "text/html" });
-  res.end(htmlTemplate(component));
-})
-
-function htmlTemplate(component) {
+function htmlTemplate(component, ss_state) {
     return `
         <!DOCTYPE html>
         <html>
@@ -40,7 +48,7 @@ function htmlTemplate(component) {
 
         <body>
             <div id="root">${component}</div>
-            <script>window.__INITIAL_DATA__ = ${serialize(characters)}</script>
+            <script>window.REDUX = ${serialize(ss_state, { isJSON: true })}</script>
             <script src="./static/index.js"></script>
             <script src="./static/vendors~index.js"></script>
         </body>
