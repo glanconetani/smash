@@ -26,7 +26,7 @@ import Kirby from "../../../images/thumbnails/Kirby.png"
 import LinkChar from "../../../images/thumbnails/Link.png"
 import LittleMac from "../../../images/thumbnails/LittleMac.png"
 import Lucario from "../../../images/thumbnails/Lucario.png"
-import Lucas from "../../../images/thumbnails/Lucas.png"
+// import Lucas from "../../../images/thumbnails/Lucas.png"
 import Lucina from "../../../images/thumbnails/Lucina.png"
 import Luigi from "../../../images/thumbnails/Luigi.png"
 import Mario from "../../../images/thumbnails/Mario.png"
@@ -118,7 +118,7 @@ class SmashTable extends Component {
                         <td> <Link to='/characters/DiddyKong'><Img src={DiddyKong} /> </Link></td>
                     </tr>
                     <tr>
-                        <td><Link to='/characters/Lucas'><Img src={Lucas} /></Link> </td>
+                        {/* <td><Link to='/characters/Lucas'><Img src={Lucas} /></Link> </td> */}
                         <td><Link to='/characters/Sonic'><Img src={Sonic} /></Link> </td>
                         <td><Link to='/characters/KingDedede'><Img src={Luigi} /></Link> </td>
                         <td><Link to='/characters/Olimar'><Img src={Olimar} /> </Link></td>

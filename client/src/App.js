@@ -11,14 +11,8 @@ import CharacterPage from './pages/CharacterPage.jsx';
 
 
 class App extends React.Component {
-  componentDidMount() {
-    if (this.props.length <= 0) {
-      this.props.fetchCharacters();
-    }
-  }
 
   render() {
-    const { name } = this.props;
 
     return (
       <div>
