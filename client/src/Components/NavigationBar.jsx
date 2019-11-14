@@ -24,7 +24,7 @@ class NavigationBar extends Component {
         return (
             <div>
                 <NavBar>
-                <img src={logoimg} alt="Logo" />   
+                <Link to='/'><img src={logoimg} alt="Logo" /></Link>   
                 <Link to='/AboutUs'>About Us</Link>
                 </NavBar>
 
