@@ -17,7 +17,6 @@ export default class CharacterPage extends Component {
         <NavBar/>
         <h1>{character}</h1>
         <img src={picture} />
-        <h1>Picture</h1>
         <h2>Attributes</h2>
         <ul>
           <li>Weight</li>
