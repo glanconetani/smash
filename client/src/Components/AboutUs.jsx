@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import NavBar from '../Components/NavigationBar.jsx'
+
 
 
 export default class AboutUs extends Component {
@@ -6,6 +8,7 @@ export default class AboutUs extends Component {
   render() {
     return (
       <React.Fragment>
+        <NavBar/>
         <h1>About us</h1>
         <p>This website is intended to provide relevant information for entry-level and beginner players
         to the video game Smash Ultimate. Other database style Smash 4 websites that provide information

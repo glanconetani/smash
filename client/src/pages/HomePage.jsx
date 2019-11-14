@@ -14,7 +14,6 @@ export default class HomePage extends Component {
       let path="./characters/"+items[0].value;
       console.log(items[0].value);
       this.props.history.push(path)
-      //return <Redirect to={"./characters/" +items[0].value}/>
       
     }
     
