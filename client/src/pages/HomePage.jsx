@@ -6,6 +6,21 @@ import NavBar from '../Components/NavigationBar.jsx'
 import Search from 'react-search'
 import { Redirect } from 'react-router-dom'
 
+
+
+export default class HomePage extends Component {
+  HiItems(items) {
+    if(items[0]!=null){
+      let path="./characters/"+items[0].value;
+      console.log(items[0].value);
+      this.props.history.push(path)
+      //return <Redirect to={"./characters/" +items[0].value}/>
+      
+    }
+    
+  }
+  render() {
+    
 let charList = [{
   id: 0,
   value: 'Mario',
@@ -226,18 +241,6 @@ let charList = [{
   id: 72,
   value: 'Incineroar',
 }]
-
-
-export default class HomePage extends Component {
-  HiItems(items) {
-    if(items[0]!=null){
-      console.log(items[0].value);
-      return <Redirect to={"./characters/" +items[0].value}/>
-      
-    }
-    
-  }
-  render() {
     return (
       <div>
         <NavBar />
