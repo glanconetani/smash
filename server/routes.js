@@ -12,8 +12,8 @@ export default [
         path: "/CaptainFalcon",
     },
     {
-        name: "Chizard",
-        path: "/Chizard",
+        name: "Charizard",
+        path: "/Charizard",
     },
     {
         name: "Cloud",
@@ -52,8 +52,8 @@ export default [
         path: "/Fox",
     },
     {
-        name: "GameWatch",
-        path: "/GameWatch", //took out & 
+        name: "MrGameAndWatch",
+        path: "/MrGameAndWatch",
     },
     {
         name: "Ganondorf",
@@ -68,8 +68,8 @@ export default [
         path: "/Ike",
     },
     {
-        name: "Jigglypuff",
-        path: "/Jigglypuff",
+        name: "JigglyPuff",
+        path: "/JigglyPuff",
     },
     {
         name: "KingDedede",
@@ -132,7 +132,7 @@ export default [
         path: "/MiiGunner",
     },
     {
-        name: "MiiSwordfighter",
+        name: "MiiSwordFighter",
         path: "/MiiSwordfighter",
     },
     {
@@ -144,8 +144,8 @@ export default [
         path: "/Olimar",
     },
     {
-        name: "PACMAN",
-        path: "/PACMAN", //took out -
+        name: "PacMan",
+        path: "/PacMan", //took out -
     },
     {
         name: "Palutena",
@@ -164,8 +164,8 @@ export default [
         path: "/Pit",
     },
     {
-        name: "ROB",
-        path: "/ROB",//took out . 
+        name: "Rob",
+        path: "/Rob",//took out .
     },
     {
         name: "Robin",
@@ -227,4 +227,4 @@ export default [
         name: "ZeroSuitSamus",
         path: "/ZeroSuitSamus",
     },
-];    
+];

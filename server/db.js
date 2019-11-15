@@ -22,6 +22,39 @@ var getCharData = {
     }
 }
 
+var con = mysql.createConnection({
+    host: 'smash-project.cwrpa3uglhdr.us-east-2.rds.amazonaws.com',
+    user: 'master',
+    password: '461lsmash!',
+    database: 'smash'
+});
+
+export const getCharacters = function(characters) {
+
+    if (con.state === 'disconnected') {
+        con.connect(function(err) {
+            if (err) throw err;
+            console.log("connected")
+        })
+    }
+
+    let promises = characters.map(character => new Promise(function(resolve, reject) {
+
+        var sqlData = 'SELECT * FROM ' + character.name
+
+        con.query(sqlData, function(err, results) {
+            if (err) {
+                reject("fail");
+            } else {
+                //console.log("have the results");
+                resolve(results);
+            }
+        })
+    }))
+
+    return promises;
+}
+
 export const getData = function(character) {
     return new Promise(function(resolve, reject) {
         var con = mysql.createConnection({

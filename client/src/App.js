@@ -22,8 +22,8 @@ class App extends React.Component {
         <Route exact path='/AboutUs' component={AboutUs} />
         {
             this.props.characters.map(character =>
-                <Route key={character[0].name}
-                       exact path={`/characters/${character[0].name}`}
+                <Route key={character.id}
+                       exact path={`/characters/${character.id}`}
                        render={(props) => <CharacterPage character={character}/>}/>
             )
         }
@@ -33,7 +33,13 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  characters: state.characters,
+  characters: state.characters.map((character) => ({
+      id: character[0].name,
+      name: character[0].display_name,
+      weight: character[0].weight,
+      speed: character[0].run_speed,
+      moves: character
+  })),
   a: 42,
 });
 

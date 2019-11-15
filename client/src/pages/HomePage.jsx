@@ -11,7 +11,7 @@ export default class HomePage extends Component {
       <div>
         <NavBar />
 
-        <SmashTable />
+        <SmashTable/>
       </div>
     );
   }

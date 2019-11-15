@@ -70,6 +70,7 @@ const Img = styled.img`width: 100px;`
 class SmashTable extends Component {
     render() {
         return (
+            <div style={{ margin: '3em'}}>
             <table>
                 <tbody>
                     <tr>
@@ -159,7 +160,9 @@ class SmashTable extends Component {
                         {/* <td> <Link to='/characters/Incineroar'><Img src={Incineroar} /></Link> </td> */}
                     </tr>
                 </tbody>
-            </table >);
+            </table >
+            </div>
+        );
     }
 }
 

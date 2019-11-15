@@ -1,11 +1,12 @@
 import React from 'react';
 import { StaticRouter } from 'react-router-dom';
 import { Provider as ReduxProvider } from "react-redux";
-import { getData } from './db.js';
+import { getCharacters } from './db.js';
 
 import App from '../client/src/App.js';
 import { renderToString } from "react-dom/server";
 import createStore, { initialize, fetchCharacters, storeData } from './store.js';
+import routes from './routes.js';
 
 var path = require("path");
 var express = require("express");
@@ -20,10 +21,7 @@ app.get('/*', function (req, res) {
     const context = {};
     const store = createStore();
 
-    let chars = ["Bayonetta", "Bowser", "CaptainFalcon", "Charizard"];
-    let promises = chars.map(c => getData(c));
-
-    Promise.all(promises).then((characters) => {
+    Promise.all(getCharacters(routes)).then((characters) => {
         Promise.all([store.dispatch(storeData(characters))]).then(() => {
           const component = (
               <ReduxProvider store={store}>
