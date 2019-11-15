@@ -4,8 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import HomePage from './pages/HomePage.jsx';
-import About from './pages/About.jsx';
-import AboutUs from './Components/AboutUs.jsx';
+import AboutUs from './pages/AboutUs.jsx';
 import CharacterPage from './pages/CharacterPage.jsx';
 
 
@@ -21,7 +20,13 @@ class App extends React.Component {
       <div>
         <Route exact path='/' component={HomePage} />
         <Route exact path='/AboutUs' component={AboutUs} />
-        <Route exact path='/characters/:id' component={CharacterPage} />
+        {
+            this.props.characters.map(character =>
+                <Route key={character[0].name}
+                       exact path={`/characters/${character[0].name}`}
+                       render={(props) => <CharacterPage character={character}/>}/>
+            )
+        }
       </div>
     );
   }

@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'
 import logoimg from '../../../images/SmashLogo.jpg';
+
+import { Navbar, Nav } from 'react-bootstrap';
+
 export const NavBar = styled.div`
 background-color: #669;
 
@@ -23,12 +26,13 @@ class NavigationBar extends Component {
     render() {
         return (
             <div>
-                <NavBar>
-                    <img src={logoimg} alt="Logo" />
-                    <Link to='/AboutUs'>About Us</Link>
-                    <input type="text" className="searchTerm" placeholder="What are you looking for?" />
-                </NavBar>
-
+                <Navbar bg="dark" variant="dark">
+                    <Navbar.Brand>SmashDB</Navbar.Brand>
+                    <Nav>
+                        <Nav.Link href='/'>Characters</Nav.Link>
+                        <Nav.Link href='/AboutUs'>About Us</Nav.Link>
+                    </Nav>
+                </Navbar>
             </div>
         );
     }

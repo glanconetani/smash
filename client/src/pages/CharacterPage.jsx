@@ -6,18 +6,18 @@ const images = require.context('../../../images/full', true);
 export default class CharacterPage extends Component {
 
   render() {
-    let character = this.props.location.pathname.split('/')[2];
-    let picture = images(`./${character}.png`)
-    console.log(this.props)
+    let { character } = this.props;
+    let picture = images(`./${character[0].name}.png`)
 
     return (
       <React.Fragment>
-        <h1>{character}</h1>
-        <img src={picture} />
+        <h1>{character[0].display_name}</h1>
+        <img src={picture}/>
         <h1>Picture</h1>
         <h2>Attributes</h2>
+
         <ul>
-          <li>Weight</li>
+          <li>Weight: {character[0].weight}</li>
         </ul>
         <h2>Moves</h2>
         <ul>

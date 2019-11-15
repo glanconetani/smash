@@ -43,7 +43,6 @@ export const getData = function(character) {
                 reject("fail");
             } else {
                 console.log("have the results");
-                console.log(results);
                 resolve(results);
             }
         })

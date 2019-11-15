@@ -20,10 +20,11 @@ app.get('/*', function (req, res) {
     const context = {};
     const store = createStore();
 
-    getData("Bayonetta").then((characters) => {
-        console.log(characters);
+    let chars = ["Bayonetta", "Bowser", "CaptainFalcon", "Charizard"];
+    let promises = chars.map(c => getData(c));
+
+    Promise.all(promises).then((characters) => {
         Promise.all([store.dispatch(storeData(characters))]).then(() => {
-          console.log(characters);
           const component = (
               <ReduxProvider store={store}>
                   <StaticRouter location={req.url} context={context}>
@@ -37,7 +38,7 @@ app.get('/*', function (req, res) {
           res.writeHead(200, { "Content-Type": "text/html" });
           res.end(htmlTemplate(ss_react, ss_state));
         });
-    });
+    }).catch(error => console.log(error.message));
 });
 
 function htmlTemplate(ss_react, ss_state) {
@@ -47,6 +48,12 @@ function htmlTemplate(ss_react, ss_state) {
         <head>
             <meta charset="utf-8">
             <title>React SSR</title>
+            <link
+              rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+              crossorigin="anonymous"
+            />
         </head>
 
         <body>
