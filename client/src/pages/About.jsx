@@ -44,7 +44,7 @@ export default class About extends Component {
             <img src="https://scontent.fftw1-1.fna.fbcdn.net/v/t1.0-1/1907918_791566744241977_2062132824891958511_n.jpg?_nc_cat=106&_nc_oc=AQn88i1WNq1I-8TOxcXhBMmcviEaFbAlOmbCUHWb84VWtOODCEw3Jng2fgV8bSESKrQ&_nc_ht=scontent.fftw1-1.fna&oh=02a6ed019575dc3246adea64c1a1b008&oe=5E271829" />
             <p>Sakar Khadka is a 4th year ECE major with tech cores in Software and Academic Enrichment.
             He is repsonsible for back-end design. </p>
-            <p>Sakar has a total of 0 commits and 0 unit tests.</p>
+            <p>Sakar has a total of 1 commits and 0 unit tests.</p>
           </div>
 
           <br></br>
@@ -53,7 +53,7 @@ export default class About extends Component {
           <div>
             <p>Shishir Khadka</p>
             <img src="https://scontent.fftw1-1.fna.fbcdn.net/v/t1.0-9/46002440_1980562665342373_3934667561894936576_n.jpg?_nc_cat=101&_nc_oc=AQn3pzfnCKcShZhYU7WGj2pquFgI8mMzL4yqqShK1gGJZQHr3YOE9h92vF5LMlYs-Z0&_nc_ht=scontent.fftw1-1.fna&oh=0f58ec3ca9534cfbcbc1817d89f6b547&oe=5E52A814" />
-            <p>Shishir Khadka is a 4th year ECE major with tech cores in Software and Academic Enrichment
+            <p>Shishir Khadka is a 4th year ECE major with tech cores in Software and Academic Enrichment.
             He is responsible for back-end design. </p>
             <p>Shishir has a total of 0 commits and 0 unit tests.</p>
           </div>
