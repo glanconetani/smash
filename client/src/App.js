@@ -21,11 +21,11 @@ class App extends React.Component {
         <Route exact path='/' component={HomePage} />
         <Route exact path='/AboutUs' component={AboutUs} />
         {
-            this.props.characters.map(character =>
-                <Route key={character.id}
-                       exact path={`/characters/${character.id}`}
-                       render={(props) => <CharacterPage character={character}/>}/>
-            )
+          this.props.characters.map(character =>
+            <Route key={character.id}
+              exact path={`/characters/${character.value}`}
+              render={(props) => <CharacterPage character={character} />} />
+          )
         }
       </div>
     );
@@ -34,11 +34,12 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => ({
   characters: state.characters.map((character) => ({
-      id: character[0].name,
-      name: character[0].display_name,
-      weight: character[0].weight,
-      speed: character[0].run_speed,
-      moves: character
+    value: character[0].name,
+    id: character[0].name,
+    name: character[0].display_name,
+    weight: character[0].weight,
+    speed: character[0].run_speed,
+    moves: character
   })),
   a: 42,
 });

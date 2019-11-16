@@ -8,13 +8,13 @@ export default class CharacterPage extends Component {
 
   render() {
     let { character } = this.props;
-    let picture = images(`./${character.id}.png`)
+    let picture = images(`./${character.value}.png`)
 
     return (
       <React.Fragment>
         <NavBar />
         <h1>{character.name}</h1>
-        <img src={picture}/>
+        <img src={picture} />
         <h1>Picture</h1>
         <h2>Attributes</h2>
 
