@@ -234,7 +234,7 @@ let charList = [{
     return (
       <div>
         <NavBar />
-        <Search items={charList} onItemsChanged={this.HiItems.bind(this)}></Search>
+        <Search placeholder="Search for Characters..." items={charList} onItemsChanged={this.HiItems.bind(this)}></Search>
         <SmashTable />
       </div>
     );
