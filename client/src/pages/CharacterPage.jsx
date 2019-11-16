@@ -10,7 +10,7 @@ export default class CharacterPage extends Component {
 
   render() {
     let { character } = this.props;
-    let picture = images(`./${character.value}.png`)
+    let picture = images(`./${character.id}.png`)
 
     character.moves.sort((a, b) => (a.damage > b.damage) ? -1 : ((b.damage > a.damage) ? 1 : 0));
 
@@ -26,7 +26,6 @@ export default class CharacterPage extends Component {
             <ul>
               <li>Weight: {character.weight}</li>
               <li>Run Speed: {character.speed}</li>
-
             </ul>
           </Col>
         </Row>
