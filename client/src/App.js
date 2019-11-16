@@ -15,10 +15,10 @@ class App extends React.Component {
   }
 
   render() {
-
+    let { characters } = this.props;
     return (
       <div>
-        <Route exact path='/' component={HomePage} />
+        <Route exact path='/' render={(props) => <HomePage {...props} characters={characters}/>} />
         <Route exact path='/AboutUs' component={AboutUs} />
         {
             this.props.characters.map(character =>
@@ -35,10 +35,11 @@ class App extends React.Component {
 const mapStateToProps = (state) => ({
   characters: state.characters.map((character) => ({
       id: character[0].name,
+      key: character[0].name,
       name: character[0].display_name,
       weight: character[0].weight,
       speed: character[0].run_speed,
-      moves: character
+      moves: character.map((move) => ({ name: move.move, damage: move.base_damage, type: move.move_type }))
   })),
   a: 42,
 });
