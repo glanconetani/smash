@@ -15,10 +15,10 @@ class App extends React.Component {
   }
 
   render() {
-
+    let { characters } = this.props;
     return (
       <div>
-        <Route exact path='/' component={HomePage} />
+        <Route exact path='/' render={(props) => <HomePage {...props} characters={characters} />} />
         <Route exact path='/AboutUs' component={AboutUs} />
         {
           this.props.characters.map(character =>

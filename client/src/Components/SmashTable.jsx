@@ -70,9 +70,6 @@ const Img = styled.img`width: 100px;`
 class SmashTable extends Component {
 
     render() {
-        const lastRow = {
-            align: 'right',
-        }
         return (
             <div style={{ margin: '3em' }}>
                 <table>

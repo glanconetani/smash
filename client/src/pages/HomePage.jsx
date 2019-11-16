@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import SmashTable from '../Components/SmashTable.jsx'
-import NavBar from '../Components/NavigationBar.jsx'
+
+import SmashTable from '../components/SmashTable.jsx'
+import NavigationBar from '../components/NavigationBar.jsx'
+
+import { DropdownButton, Dropdown } from 'react-bootstrap';
+
 import Search from 'react-search'
+
 export default class HomePage extends Component {
   HiItems(items) {
     if (items[0] != null) {
@@ -12,8 +17,14 @@ export default class HomePage extends Component {
 
     }
   }
+
+
   render() {
 
+    const backgroundStyling = {
+      backgroundcolor: 'red'
+      //backgroundimage = "../../../images/homepagebackground.JPG"
+    }
     let charList = [{
       id: 0,
       value: 'Mario',
@@ -231,10 +242,12 @@ export default class HomePage extends Component {
       id: 72,
       value: 'Incineroar',
     }]
+
+    let { characters } = this.props;
     return (
       <div>
-        <NavBar />
-        <Search placeholder='Search for a character' items={charList} onItemsChanged={this.HiItems.bind(this)}></Search>
+        <NavigationBar characters={characters}/>
+        <Search placeholder="Search for Characters..." items={charList} onItemsChanged={this.HiItems.bind(this)}></Search>
         <SmashTable />
       </div>
     );
