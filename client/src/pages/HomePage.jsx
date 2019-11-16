@@ -22,7 +22,7 @@ export default class HomePage extends Component {
   render() {
 
     const backgroundStyling = {
-      backgroundcolor = "red"
+      backgroundcolor: "red"
       //backgroundimage = "../../../images/homepagebackground.JPG"
     }
     let charList = [{

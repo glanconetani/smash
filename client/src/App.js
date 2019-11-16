@@ -19,7 +19,7 @@ class App extends React.Component {
     return (
       <div>
         <Route exact path='/' render={(props) => <HomePage {...props} characters={characters}/>} />
-        <Route exact path='/AboutUs' component={AboutUs} />
+        <Route exact path='/AboutUs' render={(props) => <AboutUs {...props} characters={characters}/>} />
         {
             this.props.characters.map(character =>
                 <Route key={character.id}
