@@ -27,7 +27,7 @@ class NavigationBar extends Component {
         return (
             <div>
                 <Navbar bg="dark" variant="dark">
-                    <Navbar.Brand>SmashDB</Navbar.Brand>
+                    <Navbar.Brand href="/">SmashDB</Navbar.Brand>
                     <Nav>
                         <Nav.Link href='/'>Characters</Nav.Link>
                         <Nav.Link href='/AboutUs'>About Us</Nav.Link>
