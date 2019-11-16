@@ -60,22 +60,19 @@ import Zelda from "../../../images/thumbnails/Zelda.png"
 import ZeroSuitSamus from "../../../images/thumbnails/ZeroSuitSamus.png"
 // import Daisy from "../../../images/thumbnails/Daisy.png"
 // import Lucas from "../../../images/thumbnails/Lucas.png"
-
-
 import { IncomingMessage } from 'http';
 import styled from 'styled-components';
 
 const Img = styled.img`width: 100px;`
 
-export const lastRow = styled.div`
-height: 100vh; /* Magic here */
-display: flex;
-justify-content: center;
-align-items: center;
-`
+
 
 class SmashTable extends Component {
+  
     render() {
+        const lastRow = {
+            align: 'right',
+            }
         return (
             <div style={{ margin: '3em'}}>
             <table>
@@ -124,21 +121,35 @@ class SmashTable extends Component {
                         <td><Link to='/characters/ROB'><Img src={ROB} /> </Link></td>
                     </tr>
                     <tr>
+                        <td></td>
+                        {/* <td><Link to='/characters/Ridley'><Img src={Ridley} /> </Link></td> */}
                         <td><Link to='/characters/Villager'><Img src={Villager} /></Link> </td>
                         <td><Link to='/characters/MegaMan'><Img src={MegaMan} /> </Link></td>
                         <td><Link to='/characters/WiiFitTrainer'><Img src={WiiFitTrainer} /></Link> </td>
                         <td><Link to='/characters/LittleMac'><Img src={LittleMac} /></Link> </td>
                         <td><Link to='/characters/Greninja'><Img src={Greninja} /></Link> </td>
                         <td> <Link to='/characters/MiiBrawler'><Img src={MiiBrawler} /> </Link></td>
-                        <td><Link to='/characters/MiiSwordfighter'><Img src={MiiSwordfighter} /></Link> </td>
+                        <td><Link to='/characters/Shulk'><Img src={Shulk} /></Link> </td>
                         <td><Link to='/characters/MiiGunner'><Img src={MiiGunner} /></Link> </td>
                         <td><Link to='/characters/Palutena'><Img src={Palutena} /></Link> </td>
                         <td><Link to='/characters/PACMAN'><Img src={PACMAN} /> </Link></td>
-                        <td><Link to='/characters/Robin'><Img src={Robin} /> </Link></td>
-                        <td><Link to='/characters/Shulk'><Img src={Shulk} /></Link> </td>
+ 
                     </tr>
                     <tr>
+                        <td></td>
+                        <td></td>
                         {/* <td><Link to='/characters/Ridley'><Img src={Ridley} /> </Link></td> */}
+                        {/* <td><Link to='/characters/Ridley'><Img src={Ridley} /> </Link></td> */}
+                        <td><Link to='/characters/BowserJr'><Img src={BowserJr} /></Link></td>
+                        <td><Link to='/characters/DuckHunt'><Img src={DuckHunt} /></Link> </td>
+                        <td><Link to='/characters/Ryu'><Img src={Ryu} /></Link> </td>
+                        <td><Link to='/characters/Cloud'><Img src={Cloud} /> </Link></td>
+                        <td><Link to='/characters/Corrin'><Img src={Corrin} /> </Link></td>
+                        <td><Link to='/characters/Bayonetta'><Img src={Bayonetta} /> </Link></td>
+                        <td><Link to='/characters/ToonLink'><Img src={ToonLink} /> </Link></td>
+                        <td><Link to='/characters/Robin'><Img src={Robin} /> </Link></td>
+                    </tr>
+                    <tr>
                         {/* <td><Link to='/characters/Simon'><Img src={Simon} /> </Link></td> */}
                         {/* <td><Link to='/characters/Richter'><Img src={Richter} /> </Link></td> */}
                         {/* <td> <Link to='/characters/KingKrool'><Img src={KingKrool} /></Link> </td> */}
@@ -160,21 +171,6 @@ class SmashTable extends Component {
                     </tr>
                 </tbody>
             </table >
-            <lastRow>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td><Link to='/characters/BowserJr'><Img src={BowserJr} /></Link></td>
-                            <td><Link to='/characters/DuckHunt'><Img src={DuckHunt} /></Link> </td>
-                            <td><Link to='/characters/Ryu'><Img src={Ryu} /></Link> </td>
-                            <td><Link to='/characters/Cloud'><Img src={Cloud} /> </Link></td>
-                            <td><Link to='/characters/Corrin'><Img src={Corrin} /> </Link></td>
-                            <td><Link to='/characters/Bayonetta'><Img src={Bayonetta} /> </Link></td>
-                            <td><Link to='/characters/ToonLink'><Img src={ToonLink} /> </Link></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </lastRow>
 
             </div>
         );
