@@ -1,5 +1,9 @@
 export default [
     {
+        name: "Bayonetta",
+        path: "/Bayonetta"
+    },
+    {
         name: "Bowser",
         path: "/Bowser",
     },

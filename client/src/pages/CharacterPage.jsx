@@ -10,15 +10,15 @@ export default class CharacterPage extends Component {
 
   render() {
     let { character } = this.props;
-    let picture = images(`./${character.id}.png`)
+    let picture = images(`./${character.value}.png`)
 
-    character.moves.sort((a,b) => (a.damage > b.damage) ? -1 : ((b.damage > a.damage) ? 1 : 0));
+    character.moves.sort((a, b) => (a.damage > b.damage) ? -1 : ((b.damage > a.damage) ? 1 : 0));
 
     return (
       <Container>
         <Row>
           <Col>
-            <Image src={picture}/>
+            <Image src={picture} />
           </Col>
           <Col style={{ marginTop: "5em" }}>
             <h1>{character.name}</h1>
@@ -45,13 +45,13 @@ export default class CharacterPage extends Component {
             <tbody>
               {
                 character.moves.map((move, index) =>
-                <tr key={move.name.trim()}>
-                  <td>{index + 1}</td>
-                  <td>{move.name}</td>
-                  <td>{move.damage}</td>
-                  <td>{move.type}</td>
-                </tr>
-              )}
+                  <tr key={move.name.trim()}>
+                    <td>{index + 1}</td>
+                    <td>{move.name}</td>
+                    <td>{move.damage}</td>
+                    <td>{move.type}</td>
+                  </tr>
+                )}
             </tbody>
           </Table>
         </Row>

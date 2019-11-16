@@ -10,8 +10,8 @@ import Search from 'react-search'
 
 export default class HomePage extends Component {
   HiItems(items) {
-    if(items[0]!=null){
-      let path="./characters/"+items[0].value;
+    if (items[0] != null) {
+      let path = "./characters/" + items[0].value;
       console.log(items[0].value);
       this.props.history.push(path)
 
@@ -60,10 +60,10 @@ export default class HomePage extends Component {
       value: 'Ness',
     }, {
       id: 11,
-      value: 'Captain Falcon',
+      value: 'CaptainFalcon',
     }, {
       id: 12,
-      value: 'Jiggly Puff',
+      value: 'Jigglypuff',
     }, {
       id: 13,
       value: 'Peach',
@@ -75,7 +75,7 @@ export default class HomePage extends Component {
       value: 'Bowser',
     }, {
       id: 16,
-      value: 'Ice Climbers',
+      value: 'IceClimbers',
     }, {
       id: 17,
       value: 'Sheik',
@@ -99,7 +99,7 @@ export default class HomePage extends Component {
       value: 'Lucina',
     }, {
       id: 24,
-      value: 'Young Link',
+      value: 'YoungLink',
     }, {
       id: 25,
       value: 'Ganondorf',
