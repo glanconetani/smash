@@ -29,7 +29,7 @@ export default class NavigationBar extends Component {
                         <Nav.Link href='/'>Characters</Nav.Link>
                         <Nav.Link href='/AboutUs'>About Us</Nav.Link>
                     </Nav>
-                    {/*
+
                     <DropdownButton className="justify-content-end" title="Characters">
                         {
                           characters.map(character =>
@@ -39,7 +39,6 @@ export default class NavigationBar extends Component {
                           )
                         }
                     </DropdownButton>
-                    */}
                 </Navbar>
             </div>
         );
