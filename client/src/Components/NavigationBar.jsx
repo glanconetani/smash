@@ -3,39 +3,43 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom'
 import logoimg from '../../../images/SmashLogo.jpg';
 
-import { Navbar, Nav } from 'react-bootstrap';
+import {
+  Navbar,
+  Nav
+} from 'react-bootstrap';
 
-export const NavBar = styled.div`
-background-color: #669;
+import { Dropdown, DropdownButton } from 'react-bootstrap';
 
-`;
-export const Content = styled.div`
-    background-color: #111;
-
-`;
-
-class NavigationBar extends Component {
+export default class NavigationBar extends Component {
     constuctor() {
-        this.routeChange = this.routeChange.bind(this);
+
     }
 
-    routeChange() {
-        let path = `newPath`;
-        //this.props.history.push(path);
-    }
+
     render() {
+
+      let { characters } = this.props;
+
         return (
             <div>
                 <Navbar bg="dark" variant="dark">
                     <Navbar.Brand href="/">SmashDB</Navbar.Brand>
-                    <Nav>
+                    <Nav className="mr-auto">
+
                         <Nav.Link href='/'>Characters</Nav.Link>
                         <Nav.Link href='/AboutUs'>About Us</Nav.Link>
                     </Nav>
+                    <DropdownButton className="justify-content-end" title="Characters">
+                        {
+                          characters.map(character =>
+                            <Dropdown.Item href={`/characters/${character.id}`} key={character.name}>
+                              {character.name}
+                            </Dropdown.Item>
+                          )
+                        }
+                    </DropdownButton>
                 </Navbar>
             </div>
         );
     }
 }
-
-export default NavigationBar;

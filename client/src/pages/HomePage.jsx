@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import SmashTable from '../Components/SmashTable.jsx'
-import NavBar from '../Components/NavigationBar.jsx'
+
+import SmashTable from '../components/SmashTable.jsx'
+import NavigationBar from '../components/NavigationBar.jsx'
+
+import { DropdownButton, Dropdown } from 'react-bootstrap';
+
 import Search from 'react-search'
 
 export default class HomePage extends Component {
@@ -10,10 +14,13 @@ export default class HomePage extends Component {
       let path="./characters/"+items[0].value;
       console.log(items[0].value);
       this.props.history.push(path)
-      
+
     }
   }
+
+
   render() {
+
     const backgroundStyling = {
       backgroundcolor: 'red'
       //backgroundimage = "../../../images/homepagebackground.JPG"
@@ -21,7 +28,7 @@ export default class HomePage extends Component {
     let charList = [{
       id: 0,
       value: 'Mario',
-    }, {    
+    }, {
       id: 1,
       value: 'DonkeyKong',
     }, {
@@ -82,7 +89,7 @@ export default class HomePage extends Component {
       id: 20,
       value: 'Pichu',
     }, {
-      id: 21, 
+      id: 21,
       value: 'Falco',
     }, {
       id: 22,
@@ -98,7 +105,7 @@ export default class HomePage extends Component {
       value: 'Ganondorf',
     }, {
       id: 26,
-      value: 'MewTwo', 
+      value: 'MewTwo',
     }, {
       id: 27,
       value: 'Roy',
@@ -235,9 +242,11 @@ export default class HomePage extends Component {
       id: 72,
       value: 'Incineroar',
     }]
+
+    let { characters } = this.props;
     return (
-      <div style={backgroundStyling}>
-        <NavBar />
+      <div>
+        <NavigationBar characters={characters}/>
         <Search placeholder="Search for Characters..." items={charList} onItemsChanged={this.HiItems.bind(this)}></Search>
         <SmashTable />
       </div>
