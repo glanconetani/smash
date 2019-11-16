@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import NavBar from '../Components/NavigationBar.jsx'
 
 const images = require.context('../../../images/full', true);
 
@@ -11,6 +12,7 @@ export default class CharacterPage extends Component {
 
     return (
       <React.Fragment>
+        <NavBar />
         <h1>{character.name}</h1>
         <img src={picture}/>
         <h1>Picture</h1>
