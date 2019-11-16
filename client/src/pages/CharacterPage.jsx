@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import NavBar from '../Components/NavigationBar.jsx'
 
 import { Container, Row, Col, Image, Table } from 'react-bootstrap';
 
