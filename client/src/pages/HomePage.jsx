@@ -174,9 +174,6 @@ let charList = [{
   id: 52,
   value: 'Greninja',
 }, {
-  id: 53,
-  value: 'MiiSwordfighter',
-}, {
   id: 54,
   value: 'MiiGunner',
 }, {
